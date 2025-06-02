@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Appointment API
+  version: 1.0.0
+paths:
+  /appointment:
+    post:
+      summary: Appointment creation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                insuredId:
+                  type: string
+                scheduleId:
+                  type: number
+                countryISO:
+                  type: string
+              required:
+                - insuredId
+                - scheduleId
+                - countryISO
+      responses:
+        "200":
+          description: Appointment created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  insuredId:
+                    type: string
+                  scheduleId:
+                    type: number
+                  countryISO:
+                    type: string
+                    enum:
+                      - "PE"
+                      - "CL"
+                  status:
+                    type: string
+                    enum:
+                      - "pending"
+                      - "completed"
+                  creationDate:
+                    type: string
+                  lastUpdateDate:
+                    type: string
+  /appointment/{insuredId}:
+    get:
+      summary: Get appointments by insured ID
+      parameters:
+        - in: path
+          name: insuredId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    insuredId:
+                      type: string
+                    scheduleId:
+                      type: number
+                    countryISO:
+                      type: string
+                      enum:
+                        - "PE"
+                        - "CL"
+                    status:
+                      type: string
+                      enum:
+                        - "pending"
+                        - "completed"
+                    creationDate:
+                      type: string
+                    lastUpdateDate:
+                      type: string

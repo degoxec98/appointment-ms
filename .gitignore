@@ -1,0 +1,13 @@
+.build/
+.esbuild/
+.serverless/
+node_modules/
+dist/
+build/
+coverage/
+
+package-lock.json
+junit.xml
+
+.env
+.npmrc
